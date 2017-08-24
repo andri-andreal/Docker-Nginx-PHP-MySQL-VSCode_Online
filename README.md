@@ -10,6 +10,13 @@ Build image
 -----------
 
 ```bash
+git clone https://github.com/andreal01/nginx-php7
+cd nginx-php7
+```
+
+
+
+```bash
 sudo make build
 ```
 
