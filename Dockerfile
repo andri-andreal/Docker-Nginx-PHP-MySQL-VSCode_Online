@@ -8,8 +8,8 @@ RUN apt-get update -y
 RUN apt-get install tar unzip -y
 
 ADD https://github.com/andreal01/myrepodocker/archive/master.zip /root/
-RUN unzip /root/master.zip -d /root/
-RUN cd /root && mv myrepodocker repo-git
+RUN unzip /root/myrepodocker-master.zip -d /root/
+RUN cd /root && mv myrepodocker-master repo-git
 
 RUN mkdir -p /srv/www/localhost/public_html/
 RUN mkdir -p /srv/www/localhost/temp/logs/
