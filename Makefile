@@ -20,6 +20,7 @@ run:
 	@mkdir /code
 	@mkdir /code/www
 	@mkdir /code/www/public
+	@cp ./component/index.html /code/www/public/index.html
 	@docker run -d \
 	--restart=always \
 	--name otka-nginx-php7 \
