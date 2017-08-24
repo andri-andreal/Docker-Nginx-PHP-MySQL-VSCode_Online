@@ -10,15 +10,32 @@ Build image
 -----------
 
 ```bash
-docker build -t otka/nginx-php7 .
+sudo make build
 ```
 
+note: please install make with :
+
+```bash
+sudo apt-get install make
+```
 
 Run container
 -------------
 ```bash
-docker run --name nginx-php7 -p 8000:80 -v /path/to/local/www:/var/www/html \
-    otka/nginx-php7
+sudo make run
+```
+
+Check Version PHP
+-------------
+```bash
+sudo make test
+```
+
+
+Run bash on container (for debug)
+-------------
+```bash
+sudo make bash
 ```
 
 
@@ -29,8 +46,4 @@ http://localhost:8000/
 ```
 
 
-Run bash on container (for debug)
----------------------------------
-```bash
-docker exec -it otka/nginx-php7 bash
-```
+
