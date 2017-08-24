@@ -16,6 +16,7 @@ build:
 
 run:
 	@echo "Start Container Use default setting (listen web on 80)"
+	@rm -R /code
 	@mkdir /code
 	@mkdir /code/www
 	@mkdir /code/www/public
