@@ -1,2 +1,0 @@
-deb http://nginx.org/packages/mainline/debian/ jessie nginx
-deb-src http://nginx.org/packages/mainline/debian/ jessie nginx

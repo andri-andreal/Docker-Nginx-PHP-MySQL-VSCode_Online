@@ -1,8 +1,0 @@
-version: 0.1
-log:
-  level: info
-http:
-    addr: :80
-    secret: haha123ddahhtd
-    debug:
-        addr: localhost:8080

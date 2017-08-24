@@ -1,47 +1,53 @@
-FROM php:7.0.2-fpm
+FROM ubuntu:trusty
 
-MAINTAINER andri@otka.co.id
+MAINTAINER Andrei Susanu <andrei.susanu@gmail.com>
 
-ENV TERM xterm
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y 
-RUN apt-get install tar unzip -y
+# add NGINX official stable repository
+RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/nginx.list
 
-ADD https://github.com/andreal01/myrepodocker/archive/master.zip /root/
-RUN unzip /root/master.zip -d /root/
-RUN cd /root && mv myrepodocker-master repo-git
+# add PHP7 unofficial repository (https://launchpad.net/~ondrej/+archive/ubuntu/php)
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/php.list
 
-RUN mkdir -p /srv/www/localhost/public_html/
-RUN mkdir -p /srv/www/localhost/temp/logs/
-RUN cp /root/repo-git/assets/repo/nginx.repo /etc/apt/sources.list.d/
-RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
-RUN apt-get update -y 
-RUN apt-get install nginx -y
-RUN useradd -ms /bin/bash andri
+# install packages
+RUN apt-get update && \
+    apt-get -y --force-yes --no-install-recommends install \
+    supervisor \
+    nginx \
+    php7.0-fpm php7.0-cli php7.0-common php7.0-curl php7.0-gd php7.0-intl php7.0-json php7.0-mbstring php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-pgsql php7.0-soap php7.0-sqlite3 php7.0-xml php7.0-xmlrpc php7.0-xsl php7.0-zip
 
-RUN rm -rf /etc/nginx/ 
-RUN cp -R /root/repo-git/assets/etc/nginx /etc/
-RUN cp /root/repo-git/assets/www/index.php /srv/www/localhost/public_html/index.php
+# configure NGINX as non-daemon
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-RUN chmod -R 0755 /srv/www/ && chown -R www-data /srv/www/ && chgrp -R www-data /srv/www/
-RUN chown -R andri /srv/www/localhost/temp/logs/ && chgrp -R andri /srv/www/localhost/temp/logs/ && chmod -R 0755 /srv/www/localhost/temp/logs/
+# configure php-fpm as non-daemon
+RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.0/fpm/php-fpm.conf
 
-RUN apt-get clean all -y \
-&& rm -rf /tmp/* /var/tmp/* \
-&& rm -rf /root/repo-git/ \
-&& rm -f /root/master.zip
+# clear apt cache and remove unnecessary packages
+RUN apt-get autoclean && apt-get -y autoremove
 
-RUN service nginx start
+# add a phpinfo script for INFO purposes
+RUN echo "<?php phpinfo();" >> /var/www/html/index.php
 
-# Add the custom configuration file we made 
-ADD ./config.yml cmd/registry/
+# NGINX mountable directories for config and logs
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx"]
 
-# Set the configuration file to config.yml
-env DOCKER_REGISTRY_CONFIG cmd/registry/config.yml
+# NGINX mountable directory for apps
+VOLUME ["/var/www"]
 
-# Make sure we use the dev configuration settings 
-env SETTINGS_FLAVOR dev
+# copy config file for Supervisor
+COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-EXPOSE 80
-#VOLUME ["/srv/www/localhost/"]
-CMD ["/sbin/init"]
+# backup default default config for NGINX
+RUN cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+# copy local defualt config file for NGINX
+COPY config/nginx/default /etc/nginx/sites-available/default
+
+# php7.0-fpm will not start if this directory does not exist
+RUN mkdir /run/php
+
+# NGINX ports
+EXPOSE 80 443
+
+CMD ["/usr/bin/supervisord"]
