@@ -54,5 +54,11 @@ Test container
 http://localhost:8000/
 ```
 
+Remove container
+--------------
+```bash
+sudo make clear
+```
+
 
 
