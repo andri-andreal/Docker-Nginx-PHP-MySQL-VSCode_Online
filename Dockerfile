@@ -13,10 +13,15 @@ RUN cd /root && mv myrepodocker-master repo-git
 
 RUN mkdir -p /srv/www/localhost/public_html/
 RUN mkdir -p /srv/www/localhost/temp/logs/
-RUN cp /root/repo-git/assets/repo/nginx.repo /etc/apt/sources.list.d/
-RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
-RUN apt-get update -y 
-RUN apt-get install nginx -y
+
+RUN \
+  add-apt-repository -y ppa:nginx/stable && \
+  apt-get update && \
+  apt-get install -y nginx && \
+  rm -rf /var/lib/apt/lists/* && \
+  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+chown -R www-data:www-data /var/lib/nginx
+
 RUN useradd -ms /bin/bash andri
 
 RUN rm -rf /etc/nginx/ 
