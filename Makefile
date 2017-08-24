@@ -25,6 +25,7 @@ run:
 	--restart=always \
 	--name otka-nginx-php7 \
 	-p 80:80 \
+	-v /code/www:/var/www \
 	-v /code/www/public:/var/www/html \
    	otka/nginx-php7
 
