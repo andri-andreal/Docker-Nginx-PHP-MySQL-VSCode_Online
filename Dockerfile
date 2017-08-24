@@ -43,5 +43,5 @@ env DOCKER_REGISTRY_CONFIG cmd/registry/config.yml
 env SETTINGS_FLAVOR dev
 
 EXPOSE 80
-#VOLUME ["/srv/www/localhost/"]
+VOLUME ["/srv/www/localhost/"]
 CMD ["/sbin/init"]
