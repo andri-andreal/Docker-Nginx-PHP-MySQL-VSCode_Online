@@ -24,7 +24,7 @@ RUN cp -R /root/repo-git/assets/etc/nginx /etc/
 RUN cp /root/repo-git/assets/www/index.php /srv/www/localhost/public_html/index.php
 
 RUN chmod -R 0755 /srv/www/ && chown -R www-data /srv/www/ && chgrp -R www-data /srv/www/
-RUN chown -R nginx /srv/www/localhost/temp/logs/ && chgrp -R nginx /srv/www/localhost/temp/logs/ && chmod -R 0755 /srv/www/localhost/temp/logs/
+RUN chown -R andri /srv/www/localhost/temp/logs/ && chgrp -R andri /srv/www/localhost/temp/logs/ && chmod -R 0755 /srv/www/localhost/temp/logs/
 
 RUN apt-get clean all -y \
 && rm -rf /tmp/* /var/tmp/* \
