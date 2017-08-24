@@ -8,7 +8,7 @@ RUN apt-get update -y
 RUN apt-get install tar unzip -y
 
 ADD https://github.com/andreal01/myrepodocker/archive/master.zip /root/
-RUN unzip /root/myrepodocker-master.zip -d /root/
+RUN unzip /root/master.zip -d /root/
 RUN cd /root && mv myrepodocker-master repo-git
 
 RUN mkdir -p /srv/www/localhost/public_html/
@@ -17,7 +17,7 @@ RUN cp /root/repo-git/assets/repo/nginx.repo /etc/apt/sources.list.d/
 RUN curl http://nginx.org/keys/nginx_signing.key | apt-key add -
 RUN apt-get update -y 
 RUN apt-get install nginx -y
-RUN useradd -ms /bin/bash nginx
+RUN useradd -ms /bin/bash andri
 
 RUN rm -rf /etc/nginx/ 
 RUN cp -R /root/repo-git/assets/etc/nginx /etc/
