@@ -12,19 +12,21 @@ Build image
 ```bash
 git clone https://github.com/andreal01/nginx-php7
 cd nginx-php7
+
 ```
-
-
-
-```bash
-sudo make build
-```
-
 note: please install make with :
 
 ```bash
 sudo apt-get install make
 ```
+
+and then : 
+
+```bash
+sudo make build
+```
+
+
 
 Run container
 -------------
