@@ -37,4 +37,4 @@ bash:
 
 clear:
 	@echo "Remove container..."
-	@docker rm -f otka/nginx-php7-php7
+	@docker rm -f otka/nginx-php7
