@@ -1,8 +1,9 @@
 
-Credit : 
-[![](https://badge.imagelayers.io/andreisusanu/nginx-php7:latest.svg)](https://imagelayers.io/?images=andreisusanu/nginx-php7:latest)
+Credit
+----------- 
+https://github.com/andreisusanu/docker-nginx-php7
 
-==============================
+
 nginx-php7
 ==========
 Build image
