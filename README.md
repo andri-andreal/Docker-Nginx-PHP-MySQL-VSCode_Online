@@ -1,5 +1,8 @@
 # Credits
-Based on the repository of https://github.com/likol/docker-php7-fpm
+Based on the repository of https://github.com/likol/docker-php7-fpm 
+And https://github.com/ZionDevelopers/docker-debian8-nginx-php7
+
+Note : Just For development
 
 # Introduction
 Dockerfile to build a Web server , based PHP7-FPM and Nginx .
@@ -9,6 +12,7 @@ Dockerfile to build a Web server , based PHP7-FPM and Nginx .
 * Clone repo
 
   `git clone https://github.com/ZionDevelopers/docker-centos7-php7.git`
+  
 
 * Build docker image
 
