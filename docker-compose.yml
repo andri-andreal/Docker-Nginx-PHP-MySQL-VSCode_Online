@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    image: andreal-nginx-php7
+    build: .
+    restart: always
+    volumes:
+      - ./code:/var/www
+      - ./code/public:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      myNetwork:
+        ipv4_address: 172.16.99.10
+
+  db:
+    image: mysql:5.6
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+    ports:
+      - "7306:3306"
+    networks:
+      myNetwork:
+        ipv4_address: 172.16.99.11
+
+networks:
+  myNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.99.0/24

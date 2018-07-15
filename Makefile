@@ -12,31 +12,19 @@ help:
 
 build:
 	@echo "Starting build Docker image..."
-	@docker build --tag=otka/nginx-php7 .
+	@docker build --tag=andreal/nginx-php7 .
 
 run:
 	@echo "Start Container Use default setting (listen web on 80)"
-	@rm -R /code
-	@mkdir /code
-	@mkdir /code/www
-	@mkdir /code/www/public
-	@cp ./component/index.html /code/www/public/index.html
-	@docker run -d \
-	--restart=always \
-	--name otka-nginx-php7 \
-	-p 80:80 \
-	-v /code/www:/var/www \
-	-v /code/www/public:/var/www/html \
-   	otka/nginx-php7
-
+	@docker-compose up -d
 test:
 	@echo "Run \"php -v\" on container..."
-	@docker exec otka/nginx-php7 php -v
+	@docker exec dockernginxphp_web_1 php -v
 
 bash:
 	@echo "Run bash on container..."
-	@docker exec -it otka/nginx-php7 bash
+	@docker exec -u root -it dockernginxphp_web_1 bash
 
 clear:
 	@echo "Remove container..."
-	@docker rm -f otka/nginx-php7
+	@docker rm -f dockernginxphp_web_1

@@ -1,6 +1,6 @@
 FROM ubuntu:trusty
 
-MAINTAINER Andrei Susanu <andrei.susanu@gmail.com>
+MAINTAINER Andri Kurnia Putra <andri.24434@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
