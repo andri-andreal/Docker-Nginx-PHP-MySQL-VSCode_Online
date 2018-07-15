@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: andreal-nginx-php7
+    image: andreal-nginx-php7.2
     build: .
     restart: always
     volumes:
@@ -14,7 +14,7 @@ services:
         ipv4_address: 172.16.99.10
 
   db:
-    image: mysql:5.6
+    image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mypassword

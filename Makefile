@@ -12,7 +12,7 @@ help:
 
 build:
 	@echo "Starting build Docker image..."
-	@docker build --tag=andreal/nginx-php7 .
+	@docker build --tag=andreal/nginx-php7.2 .
 
 run:
 	@echo "Start Container Use default setting (listen web on 80)"
