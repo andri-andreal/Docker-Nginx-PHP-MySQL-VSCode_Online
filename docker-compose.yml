@@ -21,7 +21,7 @@ services:
     ports:
       - "7306:3306"
     volumes:
-      - mysql-data:/var/www
+      - mysql-data:/var/lib/mysql
     networks:
       myNetwork:
         ipv4_address: 172.16.99.11
