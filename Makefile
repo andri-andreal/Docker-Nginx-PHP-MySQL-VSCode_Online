@@ -15,7 +15,7 @@ build:
 	@docker build --tag=andreal/nginx-php7.2 .
 
 run:
-	@echo "Start Container Use default setting (listen web on 80)"
+	@echo "Start Container Use default setting (listen web on 8080)"
 	@docker-compose up -d
 test:
 	@echo "Run \"php -v\" on container..."

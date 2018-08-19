@@ -10,24 +10,22 @@ Build image
 -----------
 
 ```bash
-git clone https://github.com/andreal01/nginx-php7
-cd nginx-php7
+git clone https://github.com/andreal01/Docker-Nginx-PHP-MySQL.git
+cd Docker-Nginx-PHP-MySQL
 
+```
+
+if you want to use antoher branch (ex. use Php7.0)
+-------------
+```bash
+git fetch
+git checkout <branch>
 ```
 note: please install make with :
 
 ```bash
 sudo apt-get install make
 ```
-
-and then : 
-
-```bash
-sudo make build
-```
-
-
-
 Run container
 -------------
 ```bash
@@ -51,7 +49,7 @@ sudo make bash
 Test container
 --------------
 ```bash
-http://localhost:8000/
+http://localhost:8080/
 ```
 
 Remove container
@@ -59,6 +57,3 @@ Remove container
 ```bash
 sudo make clear
 ```
-
-
-

@@ -20,6 +20,8 @@ services:
       MYSQL_ROOT_PASSWORD: mypassword
     ports:
       - "7306:3306"
+    volumes:
+      - mysql-data:/var/www
     networks:
       myNetwork:
         ipv4_address: 172.16.99.11
@@ -31,3 +33,5 @@ networks:
       driver: default
       config:
         - subnet: 172.16.99.0/24
+volumes:
+  mysql-data:
