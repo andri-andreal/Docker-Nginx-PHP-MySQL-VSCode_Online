@@ -5,7 +5,7 @@ services:
         ports:
             - 9010:9000
         volumes:
-            - .:/var/www/html/
+            - ./code:/var/www/html/
         links:
             - db
     nginx:
@@ -13,7 +13,7 @@ services:
         ports:
             - 8080:80
         volumes:
-            - .:/var/www/html/        
+            - ./code:/var/www/html/        
         links:
             - php-fpm
     db:
