@@ -22,10 +22,10 @@ services:
             - 3308:3306
         restart: always
         environment:
-            MYSQL_DATABASE: karikatour
-            MYSQL_USER: karikatour
-            MYSQL_PASSWORD: karikatour@password2016
-            MYSQL_ROOT_PASSWORD: root@)!^@password2016
+            MYSQL_DATABASE: MyDB
+            MYSQL_USER: MyDB
+            MYSQL_PASSWORD: mydbpassword
+            MYSQL_ROOT_PASSWORD: rootpassword
         volumes:
             - MysqlVolume:/var/lib/mysql
 
