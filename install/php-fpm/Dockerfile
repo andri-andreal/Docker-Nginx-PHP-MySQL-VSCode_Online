@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:8.1-fpm
 
 MAINTAINER Andri Kurnia Putra <andri.24434@gmail.com>
 
@@ -11,14 +11,16 @@ RUN apt-get update && \
     libwebp-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    zlib1g-dev \
+    libzip-dev \
     nano \
     libgmp-dev \
     libldap2-dev \
     netcat \
     sqlite3 \
     libsqlite3-dev && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-webp-dir=/usr/include/  --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install gd pdo pdo_mysql pdo_sqlite zip gmp bcmath pcntl ldap sysvmsg exif
+    docker-php-ext-configure gd --with-freetype=/usr/include/ --with-webp=/usr/include/  --with-jpeg=/usr/include/ && \
+    docker-php-ext-install -j$(nproc) gd pdo pdo_mysql pdo_sqlite zip gmp bcmath pcntl ldap sysvmsg exif
         
 
 COPY symfony.pool.conf  /usr/local/etc/
