@@ -18,9 +18,12 @@ Support Laravel > 10
 Run on container
 -------------
 ```bash
-sudo make run
+docker-compose up -d
 ```
-
+or in new Docker
+```bash
+docker compose up -d
+```
 ## Usage VSCOde Online
 ![image](https://github.com/andri-andreal/Docker-Nginx-PHP-MySQL-VSCode_Online/assets/17041965/1958ebbc-2c61-4e4b-8513-d132a0d7448f)
 
