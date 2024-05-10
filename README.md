@@ -1,4 +1,4 @@
-nginx-php8.1
+nginx-php8.2
 ==========
 Build image
 -----------
@@ -12,7 +12,7 @@ cd Docker-Nginx-PHP-MySQL
 Support Laravel
 -------------
 ```
-Support Laravel > 9
+Support Laravel > 10
 ```
 
 Run on container
