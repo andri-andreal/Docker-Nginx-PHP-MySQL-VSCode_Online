@@ -1,4 +1,4 @@
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
 MAINTAINER Andri Kurnia Putra <andri.24434@gmail.com>
 
@@ -16,7 +16,6 @@ RUN apt-get update && \
     nano \
     libgmp-dev \
     libldap2-dev \
-    netcat \
     sqlite3 \
     libsqlite3-dev && \
     docker-php-ext-configure gd --with-freetype=/usr/include/ --with-webp=/usr/include/  --with-jpeg=/usr/include/ && \

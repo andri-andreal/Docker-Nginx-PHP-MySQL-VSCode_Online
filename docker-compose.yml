@@ -28,6 +28,23 @@ services:
             MYSQL_ROOT_PASSWORD: rootpassword
         volumes:
             - MysqlVolume:/var/lib/mysql
+    code-server:
+        image: lscr.io/linuxserver/code-server:4.89.0
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Asia/Jakarta
+            - PASSWORD=password #optional
+            - HASHED_PASSWORD= #optional
+            - SUDO_PASSWORD=password #optional
+            - SUDO_PASSWORD_HASH= #optional
+            - PROXY_DOMAIN=code-server.my.domain #optional
+            - DEFAULT_WORKSPACE=/config/workspace #optional
+        volumes:
+            - ./code:/config/workspace
+        ports:
+            - 8308:8443
+        restart: unless-stopped
 
 volumes:
   MysqlVolume:
